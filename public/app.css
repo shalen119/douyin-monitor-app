@@ -1,0 +1,106 @@
+.concept {font-family:system-ui,"Microsoft YaHei",sans-serif;color:#1d2939}
+  .concept * {box-sizing:border-box}
+  .concept .shell {border:1px solid #dce4ed;border-radius:16px;overflow:hidden;background:#f5f7fb;box-shadow:0 10px 35px #12213a12}
+  .concept .top {display:flex;align-items:center;justify-content:space-between;background:#172535;color:white;padding:14px 19px;font-weight:700}
+  .concept .top small {font-weight:400;color:#b6c5d4}
+  .concept .layout {display:grid;grid-template-columns:160px minmax(0,1fr);min-height:590px}
+  .concept .side {background:#eaf0f6;padding:16px 11px;border-right:1px solid #dce4ed}
+  .concept .side div {padding:11px 12px;border-radius:9px;margin:3px 0;color:#4b5d70}
+  .concept .side .active {background:white;color:#137c73;font-weight:700;box-shadow:0 1px 4px #1d293914}
+  .concept .main {padding:19px;min-width:0}
+  .concept .heading {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+  .concept .heading h3 {margin:0;font-size:19px}
+  .concept .pill {display:inline-block;padding:5px 10px;border-radius:999px;background:#def7ee;color:#137553;font-size:12px;font-weight:700}
+  .concept .button {display:inline-block;padding:8px 12px;border-radius:8px;background:#137c73;color:white;font-size:12px;font-weight:700}
+  .concept .cards3 {display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}
+  .concept .metric,.concept .panel {background:white;border:1px solid #e0e6ee;border-radius:11px;padding:12px}
+  .concept .metric .label {color:#66778a;font-size:12px;margin:0}
+  .concept .metric strong {font-size:22px;display:block;margin:5px 0 0}
+  .concept .metric small {color:#7c8b99}
+  .concept .metric-click-v16 {cursor:pointer;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+  .concept .metric-click-v16:hover {transform:scale(1.035);box-shadow:0 9px 24px #12213a1c;border-color:#93cfc7}
+  .concept .metric-click-v16:focus-visible {outline:3px solid #137c73;outline-offset:3px}
+  .concept .card-overlay-v16 {display:none;position:fixed;inset:0;z-index:9999;background:#0e1b2a99;align-items:center;justify-content:center;padding:20px}
+  .concept .card-dialog-v16 {width:min(720px,100%);max-height:85vh;overflow:auto;background:#fff;border-radius:16px;padding:22px;box-shadow:0 24px 75px #09152555;animation:card-grow-v16 .25s ease-out both}
+  .concept .card-dialog-v16 header {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+  .concept .card-dialog-v16 h3 {margin:0;font-size:20px}
+  .concept .card-close-v16 {border:0;background:#eaf0f6;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:21px;color:#354b60}
+  .concept .card-dialog-v16 .table td,.concept .card-dialog-v16 .table th {font-size:13px}
+  .concept .card-dialog-v16 details summary {cursor:pointer;color:#137c73;font-weight:600}
+  @keyframes card-grow-v16 {from{transform:scale(.84);opacity:0}to{transform:scale(1);opacity:1}}
+  @media(prefers-reduced-motion:reduce){.concept .metric-click-v16{transition:none}.concept .card-dialog-v16{animation:none}}
+  .concept .row {display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:12px;margin-bottom:12px}
+  .concept .panel h4 {margin:0 0 11px;font-size:14px}
+  .concept .table {width:100%;border-collapse:collapse;font-size:12px}
+  .concept .table th {text-align:left;color:#718095;font-weight:600;border-bottom:1px solid #e6ebf0;padding:8px 5px}
+  .concept .table td {border-bottom:1px solid #eef1f4;padding:10px 5px;vertical-align:top}
+  .concept .table tr:last-child td {border:0}
+  .concept .muted {color:#7b899a;font-size:11px}
+  .concept .tag {display:inline-block;background:#fff0db;color:#a7640f;border-radius:5px;padding:2px 6px;font-size:11px}
+  .concept .rule {border:1px solid #e6ebf0;border-radius:8px;padding:9px;margin-bottom:7px;font-size:12px}
+  .concept .rule b {display:block;margin-bottom:3px}
+  .concept .bar {height:7px;border-radius:4px;background:#dce9ed;margin-top:7px;overflow:hidden}
+  .concept .bar i {display:block;background:#31a69a;height:7px}
+  .concept .spark {display:flex;align-items:flex-end;gap:5px;height:98px;border-bottom:1px solid #dce4ed;padding:0 3px}
+  .concept .bar-cell {flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;text-align:center;min-width:0}
+  .concept .bar-cell b {font-size:11px;color:#176f68;margin-bottom:3px}
+  .concept .bar-cell i {display:block;width:100%;background:#74c5bc;border-radius:3px 3px 0 0}
+  .concept .chart-dates {display:flex;gap:5px;padding:5px 3px 0}
+  .concept .chart-dates span {flex:1;text-align:center;color:#7b899a;font-size:10px}
+  .concept .alert {background:#fffaf0;border:1px solid #f2e3c0;border-radius:9px;padding:11px;font-size:12px;line-height:1.6}
+  .concept .side .nav-click {cursor:pointer}
+  .concept .settings-content {max-width:720px;font-size:13px}
+  .concept .settings-section {border:1px solid #e1e7ee;border-radius:9px;padding:11px;margin-bottom:10px}
+  .concept .settings-section b {display:block;margin-bottom:7px}
+  .concept .settings-input {display:block;width:100%;max-width:450px;border:1px solid #c9d6e2;background:white;border-radius:7px;padding:9px 10px;color:#25384b;font:inherit;margin-top:6px}
+  .concept .settings-input.narrow {max-width:210px}
+  .concept .thresholds {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .concept .field-label {display:block;color:#52657a;font-size:12px;font-weight:700}
+  .concept .settings-guide {background:#eff8f6;border-color:#cceae3;line-height:1.7}
+  .concept .settings-guide ol {margin:4px 0 0;padding-left:18px}
+  .concept .settings-action {border:0;background:#137c73;color:white;border-radius:7px;padding:8px 11px;cursor:pointer;margin-top:9px;font:inherit}
+  .concept .selection-toolbar {display:flex;align-items:center;gap:10px;margin:10px 0;color:#65778a;font-size:12px}
+  .concept .danger-button {border:1px solid #e9b4b4;background:#fff3f3;color:#ad3030;border-radius:7px;padding:6px 10px;cursor:pointer;font:inherit}
+  .concept .row-delete {border:0;background:none;color:#ad3030;cursor:pointer;font:inherit;font-size:12px}
+  .concept .stop-collection-v12 {border:1px solid #b7c9da;background:#f5f9fc;color:#315a77;border-radius:7px;padding:6px 9px;cursor:pointer;font:inherit;font-size:12px;white-space:nowrap;margin-right:5px}
+  .concept .hit-open-v13 {border:1px solid #b8d8d3;background:#eff8f6;color:#137c73;border-radius:7px;padding:6px 9px;cursor:pointer;font:inherit;font-size:12px;white-space:nowrap}
+  .concept .hit-detail-v13 td {background:#f7fafc;padding:12px 15px}
+  .concept .hit-list-v13 {display:grid;gap:8px;margin-top:8px}
+  .concept .hit-comment-v13 {border:1px solid #e1e7ee;border-radius:8px;background:white;padding:9px;line-height:1.6}
+  .concept .hit-comment-v13 mark {background:#fff0ba;border-radius:3px;padding:1px 2px}
+  .concept .delete-confirm {display:none;background:#fff9f2;border:1px solid #eccb9d;border-radius:9px;padding:11px;margin-top:11px;font-size:12px}
+  .concept .delete-confirm button {margin:8px 7px 0 0}
+  .concept .video-table-v11 th:first-child,.concept .video-table-v11 td:first-child {width:54px;min-width:54px;text-align:center;vertical-align:middle;cursor:pointer}
+  .concept .video-table-v11 input[type="checkbox"] {width:28px;height:28px;margin:7px;accent-color:#137c73;cursor:pointer;vertical-align:middle}
+  .concept .video-table-v11 input[type="checkbox"]:focus-visible {outline:3px solid #137c73;outline-offset:3px}
+  .concept .side .nav-click {position:relative;transition:background-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease}
+  .concept .side .nav-click:hover {background:#f7fbfc;color:#137c73;transform:translateX(3px)}
+  .concept .side .nav-click.active::before {content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:3px;background:#137c73}
+  .concept .preview-view {animation:page-enter-v17 .22s ease-out both}
+  .concept .video-table-v11 tr td {transition:background-color .2s ease}
+  .concept .video-table-v11 tr:hover td {background:#f7fbfa}
+  .concept .settings-section {transition:border-color .2s ease,box-shadow .2s ease}
+  .concept .settings-section:focus-within {border-color:#7bc7bd;box-shadow:0 0 0 3px #1f9b8d1c}
+  .concept .settings-input {transition:border-color .18s ease,box-shadow .18s ease}
+  .concept .settings-input:focus {outline:none;border-color:#137c73;box-shadow:0 0 0 3px #1f9b8d24}
+  .concept .settings-action,.concept .danger-button,.concept .stop-collection-v12,.concept .hit-open-v13,.concept .card-close-v16 {transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease}
+  .concept .settings-action:hover,.concept .danger-button:hover,.concept .stop-collection-v12:hover,.concept .hit-open-v13:hover,.concept .card-close-v16:hover {transform:translateY(-2px);box-shadow:0 4px 12px #12213a22}
+  .concept .settings-action:active,.concept .danger-button:active,.concept .stop-collection-v12:active,.concept .hit-open-v13:active,.concept .card-close-v16:active {transform:scale(.97)}
+  .concept .hit-detail-v13:not([hidden]) td,.concept .delete-confirm:not([style*="display: none"]) {animation:detail-enter-v17 .22s ease-out both}
+  .concept .card-dialog-v16 details[open] p {animation:detail-enter-v17 .2s ease-out both}
+  .concept .video-table-v11 input[type="checkbox"]:checked {animation:check-pop-v17 .2s ease-out}
+  .concept .spark .bar-cell i {transform-origin:bottom;animation:bar-rise-v17 .45s ease-out both}
+  .concept .spark .bar-cell:nth-child(2) i {animation-delay:.04s}
+  .concept .spark .bar-cell:nth-child(3) i {animation-delay:.08s}
+  .concept .spark .bar-cell:nth-child(4) i {animation-delay:.12s}
+  .concept .spark .bar-cell:nth-child(5) i {animation-delay:.16s}
+  .concept .spark .bar-cell:nth-child(6) i {animation-delay:.2s}
+  .concept .spark .bar-cell:nth-child(7) i {animation-delay:.24s}
+  @keyframes page-enter-v17 {from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes detail-enter-v17 {from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes check-pop-v17 {50%{transform:scale(1.13)}100%{transform:scale(1)}}
+  @keyframes bar-rise-v17 {from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  @media(prefers-reduced-motion:reduce){.concept .preview-view,.concept .hit-detail-v13:not([hidden]) td,.concept .delete-confirm,.concept .card-dialog-v16 details[open] p,.concept .video-table-v11 input[type="checkbox"]:checked,.concept .spark .bar-cell i{animation:none}.concept .side .nav-click,.concept .video-table-v11 tr td,.concept .settings-section,.concept .settings-input,.concept .settings-action,.concept .danger-button,.concept .stop-collection-v12,.concept .hit-open-v13,.concept .card-close-v16{transition:none}.concept .side .nav-click:hover,.concept .settings-action:hover,.concept .danger-button:hover,.concept .stop-collection-v12:hover,.concept .hit-open-v13:hover,.concept .card-close-v16:hover{transform:none}}
+  @media(max-width:800px){.concept .layout{grid-template-columns:1fr}.concept .side{display:flex;overflow:auto;padding:5px}.concept .side div{white-space:nowrap}.concept .row{grid-template-columns:1fr}.concept .cards3{grid-template-columns:1fr 1fr}.concept .thresholds{grid-template-columns:1fr}}
+html,body{margin:0;min-height:100%;background:#f5f7fb}body{padding:18px;color:#1d2939}.concept{max-width:1440px;margin:auto}.concept .layout{min-height:calc(100vh - 75px)}.concept .side{display:flex;flex-direction:column;gap:3px}.concept .side button.nav-click{display:block;width:100%;border:0;text-align:left;background:transparent;font:inherit;font-size:14px;padding:11px 12px;border-radius:9px;margin:0;color:#4b5d70;cursor:pointer}.concept .side button.nav-click.active{background:#fff;color:#137c73;font-weight:700;box-shadow:0 1px 4px #1d293914}.concept .side button.nav-click:hover{background:#f7fbfc;color:#137c73}.concept .main[hidden]{display:none}.concept .button{border:0;cursor:pointer;font:inherit;font-size:12px}.concept .metric-click-v16{text-align:left;font:inherit;cursor:pointer}.concept .card-overlay-v16[hidden]{display:none}.concept .card-overlay-v16.open{display:flex}.concept .settings-input{font:inherit}.concept textarea.settings-input{max-width:700px;resize:vertical}.concept .video-list{margin-top:12px}.concept .table-scroll{overflow-x:auto}.concept .video-table-v11{min-width:960px}.concept .selection-toolbar{flex-wrap:wrap}.concept .selection-toolbar .settings-input{display:inline-block;margin:0}.concept .selection-toolbar select,.concept select{padding:7px;border:1px solid #c9d6e2;border-radius:7px;background:white;color:#25384b}.concept #report-videos{min-width:200px;vertical-align:middle}.concept .small-strong{font-size:17px!important}.concept .status-error{color:#ad3030}.concept .video-title{max-width:300px;overflow-wrap:anywhere}.concept .empty{color:#7b899a;padding:12px 0}.concept .rule{line-height:1.55}.concept .hit-detail-v13[hidden]{display:none}.concept .chart-dates span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.concept #toast{position:fixed;right:22px;bottom:22px;z-index:10000;max-width:390px;border-radius:9px;background:#172535;color:white;padding:10px 14px;box-shadow:0 6px 24px #12213a30;display:none;font-size:13px}.concept #toast.show{display:block}.concept .field-label input[type=checkbox]{width:18px;height:18px;vertical-align:middle;accent-color:#137c73}.concept .video-table-v11 td:first-child{cursor:pointer}.concept .panel p{line-height:1.55}.concept .card-dialog-v16{min-width:0}.concept .card-dialog-v16 .table{min-width:500px}.concept .settings-section .stop-collection-v12{margin-top:9px}.concept .metric-click-v16:active{transform:scale(.98)}.concept .chart-dates{font-variant-numeric:tabular-nums}@media(max-width:850px){body{padding:0}.concept .shell{border-radius:0}.concept .layout{grid-template-columns:130px minmax(0,1fr)}.concept .main{padding:13px}.concept .row{grid-template-columns:1fr}.concept .cards3{grid-template-columns:1fr}.concept .heading{align-items:flex-start;flex-wrap:wrap}.concept .thresholds{grid-template-columns:1fr}}@media(max-width:560px){.concept .layout{display:block}.concept .side{display:flex;flex-direction:row;overflow-x:auto;padding:7px}.concept .side button.nav-click{white-space:nowrap;width:auto}.concept .main{padding:13px}.concept .top{padding:12px}.concept .top small{display:none}}
+.concept .setting-control{display:flex;align-items:center;gap:8px;max-width:760px}.concept .setting-control .settings-input{flex:1;min-width:0;margin:0}.concept .setting-control .settings-input.narrow{flex:0 1 210px}.concept .setting-control .settings-action{flex:none;margin:0}.concept #toast{top:18px;bottom:auto;left:50%;right:auto;transform:translate(-50%,-130%);display:flex;align-items:center;gap:16px;opacity:0;visibility:hidden;pointer-events:none;transition:transform .22s ease,opacity .22s ease;min-width:180px;justify-content:space-between}.concept #toast.show{display:flex;transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .22s ease,opacity .22s ease}.concept #toast-close{border:0;background:transparent;color:inherit;font:inherit;font-size:20px;line-height:1;cursor:pointer;padding:0 2px}@media(max-width:560px){.concept #toast{max-width:calc(100vw - 32px);width:max-content}.concept .setting-control .settings-input.narrow{flex:1}}

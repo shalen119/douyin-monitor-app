@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>舆情监测台 · 抖音试点</title>
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/polish.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+<div class="concept">
+  <div class="shell">
+    <header class="top"><span>舆情监测台 <small> / 抖音试点</small></span><small id="top-status">本机运行中 · 等待数据</small></header>
+    <div class="layout">
+      <nav class="side" aria-label="功能导航">
+        <button id="nav-dashboard" class="nav-click active" data-view="dashboard">总览</button>
+        <button id="nav-videos" class="nav-click" data-view="videos">监测视频</button>
+        <button id="nav-rules" class="nav-click" data-view="rules">提醒规则</button>
+        <button id="nav-hits" class="nav-click" data-view="hits">命中记录</button>
+        <button id="nav-reports" class="nav-click" data-view="reports">统计报表</button>
+        <button id="nav-status" class="nav-click" data-view="status">运行状态</button>
+        <button id="nav-settings" class="nav-click" data-view="settings">⚙ 设置</button>
+      </nav>
+
+      <main id="view-dashboard" class="main preview-view">
+        <div class="heading"><h3>今日总览 <span id="dashboard-running" class="pill">0 条视频监测中</span></h3><button class="button" data-go="videos">＋ 添加视频链接</button></div>
+        <div class="cards3 dashboard-cards-v16">
+          <button id="card-new-comments" class="metric metric-click-v16" data-card="comments"><p class="label">本轮新评论</p><strong id="dash-new-comments">0</strong><small id="dash-new-source">来自 0 条视频 · 点击查看</small></button>
+          <button id="card-alerts" class="metric metric-click-v16" data-card="alerts"><p class="label">今日命中提醒</p><strong id="dash-alerts">0</strong><small>点击查看来源和发送状态</small></button>
+          <button id="card-likes" class="metric metric-click-v16" data-card="likes"><p class="label">监测视频累计点赞</p><strong id="dash-likes">0</strong><small>页面显示值汇总 · 点击查看</small></button>
+        </div>
+        <div class="row">
+          <section class="panel"><h4>监测视频 <span class="muted">每条可设检查间隔；命中词集中管理</span></h4><table class="table"><thead><tr><th>作品</th><th>点赞 / 评论</th><th>下次检查</th><th>状态</th></tr></thead><tbody id="dashboard-videos"></tbody></table></section>
+          <section class="panel"><h4>集中提醒规则</h4><div class="rule"><b>评论命中词</b><span id="dash-keywords">尚未设置</span></div><div class="rule"><b>数据阈值</b><span id="dash-thresholds">尚未设置</span></div><div class="rule"><b>检查间隔</b>按视频设置，或批量修改；显示上次与下次检查时间。</div></section>
+        </div>
+        <div class="row">
+          <section class="panel"><h4>趋势统计 <span class="muted">最近 7 天 · 本轮新评论</span></h4><div id="dash-chart" class="spark"></div><div id="dash-chart-labels" class="chart-dates"></div><p class="muted">首次历史补采单列，不计入新增评论。</p></section>
+          <section class="panel"><h4>最近一条飞书提醒</h4><div id="latest-alert" class="alert">尚无提醒。</div></section>
+        </div>
+      </main>
+
+      <main id="view-videos" class="main preview-view" hidden>
+        <div class="heading"><h3>监测视频 <span id="video-running" class="pill">0 条运行中</span></h3><button id="check-all" class="button">检查全部</button></div>
+        <p class="muted">历史补采达到上限后继续监测新评论。平台显示的评论总数与本地已采条数分开显示。</p>
+        <section class="panel"><h4>添加视频</h4><label class="field-label" for="video-links">每行一条抖音视频链接或分享文案</label><textarea id="video-links" class="settings-input" rows="3" placeholder="https://www.douyin.com/video/...\n或抖音分享短链接"></textarea><button id="add-video" class="settings-action">添加视频</button><span id="add-result" class="muted"></span></section>
+        <section class="panel video-list"><h4>已提交的视频</h4>
+          <div class="selection-toolbar"><label class="select-all-control"><input id="select-all" type="checkbox" aria-label="全选视频"> 全选</label><span id="selected-count">已选 0 条</span><button id="selected-delete" class="danger-button">删除选中</button><label>批量检查间隔 <input id="bulk-interval" class="settings-input narrow" value="00:30:00" aria-label="批量检查间隔"></label><button id="apply-bulk-interval" class="settings-action">应用</button></div>
+          <div class="table-scroll"><table class="table video-table-v11"><thead><tr><th>选择</th><th>作品</th><th>点赞量</th><th>评论总数</th><th>上次 / 下次检查</th><th>状态</th><th>操作</th></tr></thead><tbody id="video-rows"></tbody></table></div>
+          <div id="delete-confirm" class="delete-confirm"><b>确认删除 <span id="delete-count">0</span> 条视频？</b><p>会同时删除本机保存的评论、统计及命中记录。已发送的飞书消息无法撤回。</p><button id="confirm-delete" class="danger-button">确认删除</button><button id="cancel-delete" class="stop-collection-v12">取消</button></div>
+        </section>
+      </main>
+
+      <main id="view-rules" class="main preview-view" hidden>
+        <div class="heading"><h3>提醒规则</h3><button class="button" data-go="settings">在设置中编辑</button></div>
+        <div class="row"><section class="panel"><h4>评论命中词 · 集中规则</h4><div id="rules-keywords" class="rule">尚未设置</div><p class="muted">适用于全部监测视频。字面包含匹配；拉丁字母忽略大小写。</p></section><section class="panel"><h4>数值阈值</h4><div id="rules-likes" class="rule">点赞量：未设置</div><div id="rules-comments" class="rule">评论总数：未设置</div></section></div>
+        <section class="panel"><h4>提醒方式</h4><p>首次历史评论命中：每条视频补采结束后汇总一次。新评论命中：本轮检查后合并提醒。暂停后恢复的补采及词库更新重匹配分别汇总。</p><p class="muted">飞书消息含视频链接、命中词和至多 3 条评论摘录。完整记录在本机「命中记录」。</p></section>
+      </main>
+
+      <main id="view-hits" class="main preview-view" hidden>
+        <div class="heading"><h3>命中记录</h3><span class="muted">点击一条记录查看具体评论</span></div>
+        <div class="selection-toolbar"><label>视频 <select id="hit-video-filter"><option value="">全部</option></select></label><label>日期 <input id="hit-date-filter" type="date" aria-label="筛选命中日期"></label><label>类型 <select id="hit-type-filter"><option value="">全部</option><option value="historical_keyword">历史补采</option><option value="new_keyword">新评论</option><option value="recovery_keyword">恢复补采</option><option value="rematch_keyword">词库重匹配</option><option value="likes_threshold">点赞阈值</option><option value="comments_threshold">评论阈值</option></select></label></div>
+        <section class="panel"><table class="table"><thead><tr><th>时间</th><th>作品</th><th>原因</th><th>命中 / 数值</th><th>飞书</th><th>详情</th></tr></thead><tbody id="hit-rows"></tbody></table><button id="hit-more" class="settings-action" hidden>加载更早记录</button></section>
+      </main>
+
+      <main id="view-reports" class="main preview-view" hidden>
+        <div class="heading"><h3>统计报表</h3><span class="muted">日 / 周 / 月 · 单条 / 多条 / 全部</span></div>
+        <div class="selection-toolbar"><label>周期 <select id="report-period"><option value="day">每日 · 最近 7 天</option><option value="week">每周 · 最近 8 周</option><option value="month">每月 · 最近 12 月</option></select></label><div class="report-video-picker"><span class="picker-label">视频</span><button id="report-videos-toggle" type="button" aria-expanded="false">全部视频 ▾</button><div id="report-videos-menu" role="group" aria-label="选择统计视频" hidden></div></div><span class="muted">不选即统计全部；可勾选多条。</span></div>
+        <div class="cards3"><div class="metric"><p class="label">本期新增评论</p><strong id="report-new">0</strong></div><div class="metric"><p class="label">本期命中评论</p><strong id="report-hits">0</strong></div><div class="metric"><p class="label">点赞量净增</p><strong id="report-likes-change">0</strong></div></div>
+        <section class="panel"><h4>新增评论</h4><div id="report-chart" class="spark"></div><div id="report-labels" class="chart-dates"></div><p class="muted">柱顶显示实际数量；按首次发现时间统计。</p></section>
+        <div class="row"><section class="panel"><h4>累计与变化</h4><div id="report-totals"></div></section><section class="panel"><h4>历史补采</h4><p id="report-history">0 条</p><p class="muted">首次历史补采单列，不计入本期新增评论。</p></section></div>
+      </main>
+
+      <main id="view-status" class="main preview-view" hidden>
+        <div class="heading"><h3>运行状态</h3><span class="pill">本机服务运行中</span></div>
+        <div class="cards3"><div class="metric"><p class="label">运行中</p><strong id="status-running">0</strong><small>条视频</small></div><div class="metric"><p class="label">需处理</p><strong id="status-issues">0</strong><small>条视频</small></div><div class="metric"><p class="label">飞书配置</p><strong id="status-feishu" class="small-strong">未配置</strong></div></div>
+        <section class="panel"><h4>视频检查状态</h4><div id="status-list"></div></section>
+      </main>
+
+      <main id="view-settings" class="main preview-view" hidden>
+        <div class="heading"><h3>监测设置</h3><button id="save-settings-top" class="button">保存设置</button></div>
+        <div class="settings-content">
+          <section class="settings-section"><b>抖音主账号登录 <span id="login-badge" class="tag">未检查</span></b><span class="muted">在专用浏览器打开抖音官方页面，由你扫码或输入验证码。本机保存该浏览器会话；系统不显示 Cookie 内容。</span><div><button id="open-login" class="settings-action">打开抖音登录</button> <button id="verify-login" class="stop-collection-v12">验证登录并恢复</button></div></section>
+          <section class="settings-section"><b>默认检查间隔</b><span class="muted">输入 HH:MM:SS，范围 00:01:00–24:00:00。新视频采用此值。</span><span class="setting-control"><input id="setting-interval" class="settings-input narrow" inputmode="numeric" value="00:30:00"><button class="settings-action" data-apply-setting="interval">应用</button></span><label class="field-label"><input id="apply-interval-all" type="checkbox"> 同时应用到现有视频</label></section>
+          <section class="settings-section"><b>每条视频历史评论补采上限</b><span class="muted">达到上限即停止首次历史补采；随后继续检查新评论。平台总数与实际已采量会分开显示。</span><span class="setting-control"><input id="setting-backfill" class="settings-input narrow" type="number" min="0" max="10000" value="200"><button class="settings-action" data-apply-setting="backfillLimit">应用</button></span></section>
+          <section class="settings-section"><b>评论命中词</b><span class="muted">用中文顿号「、」分隔，如：词语A、词语B、词语C。保存后重新匹配本机已存评论，并汇总新增命中。</span><span class="setting-control"><input id="setting-keywords" class="settings-input" type="text" placeholder="词语A、词语B、词语C"><button class="settings-action" data-apply-setting="keywords">应用</button></span></section>
+          <section class="settings-section"><b>数据阈值</b><div class="thresholds"><label class="field-label">点赞量<span class="setting-control"><input id="setting-likes" class="settings-input narrow" type="number" min="0" placeholder="留空不提醒"><button class="settings-action" data-apply-setting="likesThreshold">应用</button></span></label><label class="field-label">评论总数<span class="setting-control"><input id="setting-comments" class="settings-input narrow" type="number" min="0" placeholder="留空不提醒"><button class="settings-action" data-apply-setting="commentsThreshold">应用</button></span></label></div><span class="muted">页面显示约数时保留原样，如「3.2万」。阈值比较按 32000 估算，临界位置可能有误差。</span></section>
+          <section class="settings-section"><b>同时检查任务数</b><span class="muted">建议先用 2 条并发；可调范围 1–4。</span><span class="setting-control"><input id="setting-concurrency" class="settings-input narrow" type="number" min="1" max="4" value="2"><button class="settings-action" data-apply-setting="concurrency">应用</button></span></section>
+          <section class="settings-section settings-guide"><b>连接飞书 · 操作教程</b><ol><li>在目标飞书群的设置中添加「自定义机器人」。</li><li>复制 Webhook 地址，粘贴到下方。</li><li>如果启用了「签名校验」，把飞书提供的密钥也填在下方。若设置了自定义关键词，提醒文本须包含该词；IP 白名单须允许本机出口 IP。</li><li>保存设置，点击「发送测试提醒」，用手机飞书核对。</li></ol><label class="field-label">Webhook<span class="setting-control"><input id="setting-webhook" class="settings-input" type="password" autocomplete="off" placeholder="未配置；已保存地址不会回显"><button class="settings-action" data-apply-setting="feishuWebhook">应用</button></span></label><label class="field-label">签名密钥（可选）<span class="setting-control"><input id="setting-secret" class="settings-input" type="password" autocomplete="off" placeholder="如启用签名校验，在此填写；已保存值不回显"><button class="settings-action" data-apply-setting="feishuSecret">应用</button></span></label><span id="webhook-state" class="muted"></span><div><button id="save-settings" class="settings-action">保存设置</button> <button id="test-feishu" class="stop-collection-v12">发送测试提醒</button></div></section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div id="card-modal" class="card-overlay-v16" role="dialog" aria-modal="true" aria-label="总览卡片详情" tabindex="-1" hidden><div class="card-dialog-v16"><header><h3 id="modal-title"></h3><button id="modal-close" class="card-close-v16" aria-label="关闭详情">×</button></header><div id="modal-body"></div></div></div>
+  <div id="toast" role="status" aria-live="polite"><span id="toast-text"></span><button id="toast-close" type="button" aria-label="关闭提示">×</button></div>
+</div>
+</body>
+</html>
